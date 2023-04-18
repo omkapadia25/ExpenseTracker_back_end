@@ -17,7 +17,7 @@ const register = async (req,res)=>{
 const login=async(req,res)=>{
 
     try{
-        // console.log(req.body)
+        console.log("hello")
         const {email,password}=req.body
     
         if(!email || !password){
@@ -33,9 +33,10 @@ const login=async(req,res)=>{
         }
         const token = user.createJWT()
         res.cookie("token", token,{
-            expires:new Date(Date.now() + 60000),
-            httpOnly: true
+            expires:new Date(Date.now() + 60000000),
+            httpOnly: false
         });
+        // console.log(token)
 
         res.status(201).json({ user: { name: user.name }, token })
 
